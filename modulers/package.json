@@ -1,7 +1,7 @@
 {
   "name": "demosvrs",
   "description": "demosvrs",
-  "version": "2.1.1-SNAPSHOT",
+  "version": "3.0.0",
   "license": "UNLICENSED",
   "private": true,
   "main": "service.js",
