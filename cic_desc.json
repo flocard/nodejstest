@@ -1,0 +1,52 @@
+{
+  "cicVersion": "2.0.0",
+  "mailRecipients" : "paas-erable.projet@orange.com,erable-coreplatform-paas.fr@capgemini.com",
+  "dependencies": [
+    {
+      "name": "nodejs",
+      "version": "6.9.0"
+    }
+  ],
+  "stages": [
+    {
+      "description": "Build & Test",
+      "command": "cd modulers && npm install --ignore-scripts && npm run build && npm pack"
+    },
+    {
+      "description": "Package EPM",
+      "command": "npm install --ignore-scripts && npm run build"
+    }
+  ],
+  "app-serveur-version":[
+    {
+      "name":"nodejs",
+      "version":"6.9.0"
+    }
+  ],
+  "artifacts": [
+    {
+      "type": "tar.gz",
+      "path": "dist/*.tar.gz"
+    }
+  ],
+  "release": {
+    "before_tag_cmd":"npm version --allow-same-version ${release_version} -m \"Upgrade to ${release_version} \" && cd modulers && npm version --allow-same-version ${release_version} -m \"Upgrade to ${release_version}  \"",
+    "after_tag_cmd":"npm version --allow-same-version ${development_version} -m \"Upgrade to ${development_version}\" && cd modulers && npm version --allow-same-version ${development_version} -m \"Upgrade to ${development_version} \""
+  },
+  "testingReportPath": "modulers/test/TEST-*.xml",
+  "sonarProperties": [
+    "-Dsonar.language=js",
+    "-Dsonar.modules=demosvrs",
+    "-Ddemosvrs.sonar.projectBaseDir=modulers",
+    "-Dsonar.sources=.",
+    "-Dsonar.exclusions=node_modules/**/*,**/node_modules/**/*,test/**/*,modulers/app/common/*,modulers/app/server/*,modulers/*",
+    "-Ddemosvrs.sonar.javascript.lcov.reportPaths=test/coverage/reports/lcov.info",
+    "-Ddemosvrs.sonar.javascript.jstestdriver.reportsPath=test",
+    "-Dsonar.projectName=paas--demosv",
+    "-Dsonar.projectVersion=last",
+    "-Dsonar.projectKey=paas--demosv"
+  ],
+  "cveAnalysis": {
+    "enabled": true
+  }
+}

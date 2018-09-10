@@ -1,0 +1,2 @@
+<%- module_code %>/<%- module_version %>
+mysqlha/<%- application_code %>/<%- module_version %>

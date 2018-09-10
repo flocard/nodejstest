@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "logging": {
+      "id": "http://jsonschema.net/logging",
+      "type": "object",
+      "properties": {
+        "erable-logger": {
+          "id": "http://jsonschema.net/logging/erable-logger",
+          "type": "object",
+          "properties": {
+            "console": {
+              "id": "http://jsonschema.net/logging/erable-logger/console",
+              "type": "object",
+              "properties": {
+                "silent": {
+                  "id": "http://jsonschema.net/logging/erable-logger/console/silent",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "silent"
+              ]
+            },
+            "syslog": {
+              "id": "http://jsonschema.net/logging/erable-logger/syslog",
+              "type": "object",
+              "properties": {
+                "app_name": {
+                  "id": "http://jsonschema.net/logging/erable-logger/syslog/app_name",
+                  "type": "string"
+                },
+                "protocol": {
+                  "id": "http://jsonschema.net/logging/erable-logger/syslog/protocol",
+                  "type": "string"
+                },
+                "level": {
+                  "id": "http://jsonschema.net/logging/erable-logger/syslog/level",
+                  "type": "string"
+                },
+                "levelsMapping": {
+                  "id": "http://jsonschema.net/logging/erable-logger/syslog/levelsMapping",
+                  "type": "object",
+                  "properties": {
+                    "TRACE": {
+                      "id": "http://jsonschema.net/logging/erable-logger/syslog/levelsMapping/TRACE",
+                      "type": "string"
+                    },
+                    "DEBUG": {
+                      "id": "http://jsonschema.net/logging/erable-logger/syslog/levelsMapping/DEBUG",
+                      "type": "string"
+                    },
+                    "INFO": {
+                      "id": "http://jsonschema.net/logging/erable-logger/syslog/levelsMapping/INFO",
+                      "type": "string"
+                    },
+                    "WARN": {
+                      "id": "http://jsonschema.net/logging/erable-logger/syslog/levelsMapping/WARN",
+                      "type": "string"
+                    },
+                    "ERROR": {
+                      "id": "http://jsonschema.net/logging/erable-logger/syslog/levelsMapping/ERROR",
+                      "type": "string"
+                    },
+                    "FATAL": {
+                      "id": "http://jsonschema.net/logging/erable-logger/syslog/levelsMapping/FATAL",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "console",
+            "syslog"
+          ]
+        }
+      },
+      "required": [
+        "erable-logger"
+      ]
+    }
+  },
+  "required": [
+    "logging"
+  ]
+}

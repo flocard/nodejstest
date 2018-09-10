@@ -1,0 +1,9 @@
+{
+  "logging": {
+    "erable-logger": {
+      "console": {
+        "level": "DEBUG"
+      }
+    }
+  }
+}

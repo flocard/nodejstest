@@ -1,0 +1,10 @@
+{
+  "logging": {
+    "erable-logger": {
+      "console": {
+        "silent": false,
+        "level": "DEBUG"
+      }
+    }
+  }
+}
