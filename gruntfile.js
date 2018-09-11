@@ -54,18 +54,6 @@ module.exports = function (grunt) {
                             dest: './dist/resources/' + finalArchiveName + '.requires'
                         },
                     ]
-                },
-                confFiles: {
-                    files: [
-                        {
-                            src: ['./dist/resources/config/config-tech.json'],
-                            dest: './dist/resources/config/' + modulepkgJson.name + '-config-tech.json'
-                        },
-                        {
-                            src: ['./dist/resources/config/logger-config.json'],
-                            dest: './dist/resources/config/' + modulepkgJson.name + '-logger-config.json'
-                        },
-                    ]
                 }
             },
             compress: {
@@ -74,10 +62,8 @@ module.exports = function (grunt) {
                         archive: './dist/'+pkgJson.name+'-'+pkgJson.version+'.tar.gz'
                     },
                     files: [
-                        {expand: true,cwd:'./dist/',src: [modulepkgJson.name +'.tgz'],dest: modulepkgJson.name+ '/' + modulepkgJson.version + '/nodejs'},
-                        {expand: true,cwd:'./dist/resources/config', src: ['*'],dest: modulepkgJson.name+ '/' + modulepkgJson.version + '/nodejs/conf'},
-                        {expand: true, cwd:'./dist/resources',src: [finalArchiveName+'.requires'], dest:'.'},
-                        {expand: true, cwd:'./database/resources',src: ['*'], dest:'mysqlha/'+pkgJson.name+'/'+modulepkgJson.version},
+                        {expand: true,cwd:'./dist/',src: [modulepkgJson.name +'.tgz'],dest: modulepkgJson.name+ '/' + modulepkgJson.version + '/nodejs'},                        
+                        {expand: true, cwd:'./dist/resources',src: [finalArchiveName+'.requires'], dest:'.'}                    
                     ]
                 }
             },
@@ -109,9 +95,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('archive', [
               'clean'
-            , 'copy:configFiles'
-            , 'template:requires'
-            , 'template:db_requires'
+            , 'template:requires'            
             , 'rename'
             , 'move:subArchive'
             , 'compress:finalArchive'

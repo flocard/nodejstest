@@ -25,7 +25,7 @@
   ],
   "artifacts": [
     {
-      "type": "tar.gz",
+      "type": "epm",
       "path": "dist/*.tar.gz"
     }
   ],
