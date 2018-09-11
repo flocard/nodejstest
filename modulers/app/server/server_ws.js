@@ -6,7 +6,7 @@ var timeout = require('connect-timeout');
 var bodyParser = require('body-parser');
 
 var logHelper = require('../common/log');
-var db = require('../common/database');
+//var db = require('../common/database');
 var utils = require('../common/utils');
 var middleware = require('../common/middleware');
 var helloWorld = require('./helloWorld');
@@ -38,9 +38,9 @@ var buildServer = function() {
   }
 
   app.set('view engine', 'ejs');
-  db.connectdb(process.env.MYSQL_WRITE_DATABASE,function(connect){
+/*  db.connectdb(process.env.MYSQL_WRITE_DATABASE,function(connect){
     connection = connect;
-  });
+  });*/
   app.use('/', express.static(path.join(__dirname, '/../../public')));
   var adresses = utils.getip();
   console.log(adresses);
@@ -67,7 +67,7 @@ var buildServer = function() {
 
   app.get('/reconnect', function(req, res) {
     connection.end();
-    db.connectdb(process.env.MYSQL_WRITE_DATABASE, function(connect){
+  /*  db.connectdb(process.env.MYSQL_WRITE_DATABASE, function(connect){
        connection = connect;
        res.render(path.join(__dirname + '/../../public/database'), {
          status: connection.state,
@@ -75,7 +75,7 @@ var buildServer = function() {
          query: "select * from hello",
          time : undefined
        });
-    });
+    });*/
     logHelper.logger.info('reconnection loaded successfully !');
   });
 

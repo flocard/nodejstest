@@ -2,8 +2,8 @@
     "logging":{
         "erable-logger":{
             "console":{
-                "silent": false,
-                "level": "DEBUG"
+                "silent": false,
+                "level": "DEBUG"
             }
         }
     }
