@@ -20,7 +20,7 @@ var isTraceEnabled;
 /**
  * Loading configuration
  */
-var path_config = path.resolve(process.env['ERABLE_CONFIG_DIR'], utils.resolveConfigFilename(global.pkgJson.name,'logger-config.json'));
+var path_config = path.resolve("app/conf", utils.resolveConfigFilename(global.pkgJson.name,'logger-config.json'));
 var jsonConf = JSON.parse(fs.readFileSync(path_config)).logging;
 
 logger.loadConfiguration(jsonConf, 'erable-logger', {
