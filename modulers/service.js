@@ -6,10 +6,10 @@ global.config = {};
 var logHelper = require('./app/common/log');
 var server_ws = require('./app/server/server_ws');
 var configManager = require('./app/common/config_manager');
-
+var path = require('path');
 
 var listenPort = process.env['ERABLE_PORTS'];
-var configFileDir = process.env['ERABLE_CONFIG_DIR'];
+var configFileDir = path.resolve("app/conf");
 
 var profileVariable = process.env['MYSQL_READ_USER'];
 
