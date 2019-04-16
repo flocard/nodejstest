@@ -15,6 +15,10 @@
     {
       "description": "Package EPM",
       "command": "npm install --ignore-scripts && npm run build"
+    },
+    {
+        "description": "debug",
+        "command": "curl -X GET -s -o /dev/null -w '%{http_code}' -H 'Content-Type: application/json' http://referentielrs-services--referentiel.erable-interne-ios.si.francetelecom.fr/api/v1/ref/cicd/nonrep"
     }
   ],
   "app-serveur-version":[
