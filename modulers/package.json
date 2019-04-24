@@ -1,6 +1,6 @@
 {
-  "name": "demosvrs",
-  "description": "demosvrs",
+  "name": "njstestrs",
+  "description": "njstestrs",
   "version": "3.0.1-SNAPSHOT",
   "license": "UNLICENSED",
   "private": true,
@@ -10,7 +10,7 @@
     "body-parser": "1.13.3",
     "connect-timeout": "1.7.0",
     "ejs": "^2.5.7",
-    "erable-logger-nodejs": "1.1.0-RC3",
+    "erable-logger-nodejs": "2.0.1",
     "express": "4.13.3",
     "extend": "3.0.0",
     "is-my-json-valid": "2.10.1",
