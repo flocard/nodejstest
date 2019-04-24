@@ -1,49 +1,101 @@
-/**
- * Log manager
- * Very poor performance on function isLevelEnabled => so cache of value is needed
- * Configuration cannot be reloaded cause of logger module not neabling this
- * @type {*|exports|module.exports}
- */
-var logger = require('erable-logger-nodejs');
+var erableLogger = require('erable-logger-nodejs');
 var path = require('path');
 var fs = require('fs');
 var utils = require('./utils');
-var global = require('../../global.js');
 
-//isDebugEnabled cache
-var isDebugEnabled;
-
-//isDebugEnabled cache
-var isTraceEnabled;
+var logger, isDebug = null, isTrace = null, isLoaded = false;
+var defaultConfFilePath = path.resolve(process.env['ERABLE_CONFIG_DIR'], utils.resolveConfigFilename('logger-config.json'));
 
 
 /**
- * Loading configuration
+ * Load logger if not already done
  */
-var path_config = path.resolve(process.env['ERABLE_CONFIG_DIR'] , utils.resolveConfigFilename(global.pkgJson.name,'logger-config.json'));
-var jsonConf = JSON.parse(fs.readFileSync(path_config)).logging;
+if (!isLoaded) {
+    isLoaded = initLogger();
+}
 
-logger.loadConfiguration(jsonConf, 'erable-logger', {
-  name: global.pkgJson.name,
-  version: global.pkgJson.version
-}, function (err) {
-  /* istanbul ignore if */
-  if (err) {
-    console.error('Impossible de charger la configuration : ', err);
-  } else {
-    logger.getLogger('erable-logger');
-    isDebugEnabled = logger.isLevelEnabled('DEBUG');
-    isTraceEnabled = logger.isLevelEnabled('TRACE');
-    logger.info('Logger configuration loading OK : isDebugEnabled:%s,isTraceEnabled:%s,file:%s',
-      isDebugEnabled, isTraceEnabled, path_config);
-  }
-});
+/**
+ * initialize erable logger
+ * @param confFilePath
+ * @returns {boolean}
+ */
+function initLogger(confFilePath) {
+    var filePath = (confFilePath === undefined) ? defaultConfFilePath : confFilePath;
+    var loaded = false;
+
+    var emitter = {
+        name: 'njstest',
+        version: 'test',
+        type: 'service'
+    };
+    var mappingVersion = {
+        commonMappingVersion: '1.6',
+        customMappingVersion: '1.0'
+    };
+
+    try {
+        var container = erableLogger.buildLoggerFromFile(filePath, emitter, mappingVersion);
+        logger = container.get('erable-logger');
+        module.exports.logger = logger;
+        loaded = true;
+        logger.info('Logger sucessfully loaded, is debug enabled : ' + isDebugEnabled());
+    } catch (ex) {
+        console.error('Exception while loading logger: ', ex);
+    }
+    return loaded;
+}
+
+/**
+ * Reload logger and reset isDebug isTrace values
+ * @param confFilePath
+ */
+var reloadLogger = function (confFilePath) {
+    var filePath = (confFilePath === undefined) ? defaultConfFilePath : confFilePath;
+    initLogger(filePath);
+    isDebug = null;
+    isTrace = null;
+};
+
+// Info for logging
+var projectInfo = require('../../package.json');
+
+/**
+ * returns true if debug level is enabled
+ * @returns {*}
+ */
+function isDebugEnabled() {
+    if (isDebug === null) {
+        isDebug = logger.isLevelEnabled('DEBUG');
+    }
+    return isDebug;
+}
+
+/**
+ * returns true if trace level is enabled
+ * @returns {*}
+ */
+function isTraceEnabled() {
+    if (isTrace === null) {
+        isTrace = logger.isLevelEnabled('TRACE');
+    }
+    return isTrace;
+}
+
+/**
+ * returns the metadata including the processId
+ */
+var getMetaDataWithProcessId = function() {
+    var metaData = {};
+    erableLogger.logField(metaData, erableLogger.fieldsMapping.technical.thread.id, `${process.pid}`);
+    return metaData;
+}
+
 
 /**
  * Logger helper module
  */
 module.exports = {
-  logger: logger,
+  logger: erableLogger,
   isDebugEnabled: isDebugEnabled,
   isTraceEnabled: isTraceEnabled
 };
