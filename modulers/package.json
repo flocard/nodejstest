@@ -9,7 +9,6 @@
     "async": "1.4.2",
     "body-parser": "1.13.3",
     "connect-timeout": "1.7.0",
-    "ejs": "^2.5.7",
     "erable-logger-nodejs": "2.0.1",
     "express": "4.13.3",
     "extend": "3.0.0",
