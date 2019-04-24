@@ -2,9 +2,10 @@ var erableLogger = require('erable-logger-nodejs');
 var path = require('path');
 var fs = require('fs');
 var utils = require('./utils');
+var global = require('../../global.js');
 
 var logger, isDebug = null, isTrace = null, isLoaded = false;
-var defaultConfFilePath = path.resolve(process.env['ERABLE_CONFIG_DIR'], utils.resolveConfigFilename('logger-config.json'));
+var defaultConfFilePath = path.resolve(process.env['ERABLE_CONFIG_DIR'], utils.resolveConfigFilename(global.pkgJson.name,'logger-config.json'));
 
 
 /**
