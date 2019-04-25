@@ -9,7 +9,8 @@ var configManager = require('./app/common/config_manager');
 var path = require('path');
 
 var listenPort = process.env['ERABLE_PORTS'];
-var configFileDir = path.resolve("app/conf");
+var configFileDir = path.resolve(process.env['ERABLE_CONFIG_DIR']);
+
 
 var profileVariable = process.env['MYSQL_READ_USER'];
 
