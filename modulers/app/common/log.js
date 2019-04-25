@@ -95,8 +95,9 @@ var getMetaDataWithProcessId = function() {
 /**
  * Logger helper module
  */
-module.exports = {
-  logger: erableLogger,
-  isDebugEnabled: isDebugEnabled,
-  isTraceEnabled: isTraceEnabled
-};
+module.exports.erableLogger = erableLogger;
+module.exports.initLogger = initLogger;
+module.exports.reloadLogger = reloadLogger;
+module.exports.isDebugEnabled = isDebugEnabled;
+module.exports.isTraceEnabled = isTraceEnabled;
+module.exports.getMetaDataWithProcessId = getMetaDataWithProcessId;
