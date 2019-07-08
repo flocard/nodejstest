@@ -7,7 +7,27 @@
       "version": "8.9.1"
     }
   ],
+  "checkout" : [
+      {
+          "gitUrl": "https://erable.s2-eu.capgemini.com/gitlab/paas/exemple/additionnalGit/tree/test",
+          "branch" : "master",
+          "folder" : "additionnalGitBranchMaster"
+      },
+      {
+          "gitUrl": "https://erable.s2-eu.capgemini.com/gitlab/paas/exemple/additionnalGit/tree/test",
+          "branch" : "test",
+          "folder" : "additionnalGitBranchTest"
+      }
+  ],
   "stages": [
+    {
+        "description": "test additionnalGit",
+        "command" : "cd additionnalGitBranchMaster ; ls -all"
+    },
+    {
+        "description": "test additionnalGit",
+        "command" : "cd additionnalGitBranchTest ; ls -all"
+    },
     {
       "description": "Build & Test",
       "command": "cd modulers && npm install --ignore-scripts && npm run build && npm pack"
