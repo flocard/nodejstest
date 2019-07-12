@@ -23,18 +23,9 @@
           "gitUrl": "https://erable.s2-eu.capgemini.com/gitlab/paas/exemple/additionnalGit.git",
           "branch" : "${additionalGitBranch}",
           "folder" : "additionnalGitBranchMaster"
-      },
-      {
-          "gitUrl": "https://erable.s2-eu.capgemini.com/gitlab/paas/exemple/additionnalGit.git",
-          "branch" : "test",
-          "folder" : "additionnalGitBranchTest"
       }
   ],
   "stages": [
-    {
-        "description": "test additionnalGit",
-        "command" : "cd additionnalGitBranchMaster ; ls -all"
-    },
     {
       "description": "Build & Test",
       "command": "cd modulers && npm install --ignore-scripts && npm run build && npm pack"
