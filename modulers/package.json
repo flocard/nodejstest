@@ -1,7 +1,7 @@
 {
   "name": "njstestrs",
   "description": "njstestrs",
-  "version": "3.0.2",
+  "version": "3.0.3-SNAPSHOT",
   "license": "UNLICENSED",
   "private": true,
   "main": "service.js",
