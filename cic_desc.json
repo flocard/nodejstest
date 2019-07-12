@@ -21,8 +21,8 @@
   "checkout" : [
       {
           "gitUrl": "https://erable.s2-eu.capgemini.com/gitlab/paas/exemple/additionnalGit.git",
-          "branch" : "${additionalGitBranch}",
-          "folder" : "repo1"
+          "branch" : "tags/tagtest",
+          "folder" : "repoadd"
       }
   ],
   "stages": [
