@@ -36,10 +36,6 @@
         "command" : "cd additionnalGitBranchMaster ; ls -all"
     },
     {
-        "description": "test additionnalGit",
-        "command" : "cd additionnalGitBranchTest ; ls -all"
-    },
-    {
       "description": "Build & Test",
       "command": "cd modulers && npm install --ignore-scripts && npm run build && npm pack"
     },
