@@ -13,7 +13,8 @@
       "type": "list",
       "description": "Allow to change application code in the service",
       "defaultListValue": [
-        "master"
+        "master",
+        "test"
       ]
     }
   ],
