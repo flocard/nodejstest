@@ -22,7 +22,7 @@
       {
           "gitUrl": "https://erable.s2-eu.capgemini.com/gitlab/paas/exemple/additionnalGit.git",
           "branch" : "${additionalGitBranch}",
-          "folder" : "modulers"
+          "folder" : "repo1"
       }
   ],
   "stages": [
