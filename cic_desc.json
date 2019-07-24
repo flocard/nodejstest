@@ -7,24 +7,6 @@
       "version": "8.9.1"
     }
   ],
-  "jobParams": [
-    {
-      "name": "additionalGitBranch",
-      "type": "list",
-      "description": "Allow to change application code in the service",
-      "defaultListValue": [
-        "master",
-        "test"
-      ]
-    }
-  ],
-  "checkout" : [
-      {
-          "gitUrl": "https://erable.s2-eu.capgemini.com/gitlab/paas/exemple/additionnalGit.git",
-          "branch" : "tags/tagtest",
-          "folder" : "repoadd"
-      }
-  ],
   "stages": [
     {
       "description": "Build & Test",
