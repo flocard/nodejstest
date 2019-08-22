@@ -1,3 +1,3 @@
-FROM gitpod/workspace-postgresql
+FROM gitpod/workspace-postgres
 
 # add your tools here
