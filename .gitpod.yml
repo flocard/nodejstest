@@ -2,6 +2,7 @@ image:
   file: .gitpod.dockerfile
 ports:
 - port: 8080
+  onOpen: open-preview
 tasks:
 - command: cd modulers && npm install --ignore-scripts && npm run build && npm pack
 - command: npm install --ignore-scripts && npm run build
