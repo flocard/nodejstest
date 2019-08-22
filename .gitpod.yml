@@ -4,5 +4,5 @@ ports:
 - port: 8080
   onOpen: open-preview
 tasks:
-- init: cd modulers && npm install --ignore-script ../erable-logger-nodejs-2.0.2.tgz && npm install --ignore-scripts && npm run build && npm pack && cd .. && npm install --ignore-scripts && npm run build
+- before: cd modulers && npm install --ignore-script ../erable-logger-nodejs-2.0.2.tgz && npm install --ignore-scripts && npm run build && npm pack && cd .. && npm install --ignore-scripts && npm run build
 - command: cd modulers && node service.js
