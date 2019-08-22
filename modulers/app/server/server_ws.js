@@ -41,7 +41,10 @@ var buildServer = function() {
 /*  db.connectdb(process.env.MYSQL_WRITE_DATABASE,function(connect){
     connection = connect;
   });*/
-  app.use('/', express.static(path.join(__dirname, '/../../public')));
+  app.use(express.static(path.join(__dirname, '/../../public')));
+  app.get("/", function(req, res){
+      res.redirect("/hello");
+  });
   var adresses = utils.getip();
   console.log(adresses);
   app.get('/hello', function(req, res) {
