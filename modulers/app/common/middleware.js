@@ -111,45 +111,8 @@ var buildError = function (msg, eresult) {
  * @returns {{erable-request-id, title, code, duration, remote_ip, user_agent}|*}
  */
 var buildMetaData = function (req, res) {
-  var duration = req._stopTime - req._startTime;
-  var requestId = getRequestId(req);
-  var title = 'HTTP request handler';
-  var code = res.statusCode;
-  var userAgent = req.header('User-Agent');
-  var remoteIPArray = [];
-  if (req.ip) {
-    remoteIPArray.push(req.ip);
-  }
-
-  if (req.ips && req.ips.length > 0) {
-    remoteIPArray.push(req.ips);
-  }
-  var remoteIP = remoteIPArray.toString();
-  // Building standard meta data meged with specific metadata
-  var metaData = logHelper.logger.buildLogMetadata(requestId, title, code, duration, remoteIP, userAgent);
-  var functionnalMetaData = getMetadata(req);
-  /**for (var attrname in functionnalMetaData) {
-
-    if (req._metadata.hasOwnProperty(attrname)) {
-      metaData[attrname] =  [attrname];
-    }
-  }**/
-
-  extend(metaData, functionnalMetaData);
-
-  metaData['url'] = req.originalUrl;
-  if (req._api) {
-    metaData['api'] = req._api;
-  }
-
-  if (res._result) {
-    metaData['resp'] = res._result.http_body;
-  }
-  if (res._detail) {
-    metaData['detail'] = res._detail;
-  }
-  metaData['evCode'] = 'KPI_INT';
-  return metaData;
+ var metaData = {};
+ return metaData;
 };
 
 /**
@@ -237,9 +200,9 @@ var errorHandler = function (err, req, res, next) {
     if (err.result.print_stack === undefined || err.result.print_stack) {
       var requestId = getRequestId(req);
       var title = 'Error stack';
-      var metaData = logHelper.logger.buildLogMetadata(requestId, title, undefined, undefined, undefined, undefined);
+      var metaData = buildMetaData(req, res);
       metaData.stack = err.stack;
-      logHelper.logger.warn('Error stack for req', metaData);
+      logHelper.logger.warn('Error stack for req' + err, metaData);
     }
 
     res._detail = err.message;
@@ -247,10 +210,9 @@ var errorHandler = function (err, req, res, next) {
   } else {
     var requestIdElse = getRequestId(req);
     var titleElse = 'Error stack';
-    var metaDataElse = logHelper.logger.buildLogMetadata(requestIdElse, titleElse,
-      undefined, undefined, undefined, undefined);
+    var metaDataElse = buildMetaData(req, res);
     metaDataElse.stack = err.stack;
-    logHelper.logger.error('Unexpected error stack', metaDataElse);
+    logHelper.logger.error('Unexpected error stack' + err, metaDataElse);
     sendResult(res, resultHelper.EResult.UNEXPECTED_ERROR);
   }
 };

@@ -9,7 +9,6 @@ var logHelper = require('../common/log');
 //var db = require('../common/database');
 var utils = require('../common/utils');
 var middleware = require('../common/middleware');
-var helloWorld = require('./helloWorld');
 var config = require('./config');
 var path = require('path');
 var pckjson = require('../../package.json');
@@ -38,9 +37,9 @@ var buildServer = function() {
   }
 
   app.set('view engine', 'ejs');
-/*  db.connectdb(process.env.MYSQL_WRITE_DATABASE,function(connect){
+  db.connectdb(process.env.MYSQL_WRITE_DATABASE,function(connect){
     connection = connect;
-  });*/
+  });
   app.use(express.static(path.join(__dirname, '/../../public')));
   app.get("/", function(req, res){
       res.redirect("/hello");
