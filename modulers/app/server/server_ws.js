@@ -6,12 +6,13 @@ var timeout = require('connect-timeout');
 var bodyParser = require('body-parser');
 
 var logHelper = require('../common/log');
-//var db = require('../common/database');
+var db = require('../common/database');
 var utils = require('../common/utils');
 var middleware = require('../common/middleware');
 var config = require('./config');
 var path = require('path');
 var pckjson = require('../../package.json');
+var helloWorld = require('./helloWorld');
 /**
  * Server module
  */
@@ -46,6 +47,21 @@ var buildServer = function() {
   });
   var adresses = utils.getip();
   console.log(adresses);
+  app.get('/helloworld', function (req, res, next) {
+    try{
+      res.send('Hello World!');
+    } catch(ex){
+      next(ex);
+    }
+  });
+
+  app.post('/helloworld', function (req, res, next) {
+    try{
+      res.send('World Hello!');
+    } catch(ex){
+      next(ex);
+    }
+  });
   app.get('/hello', function(req, res) {
     res.render(path.join(__dirname + '/../../public/index'), {
       tagline: process.version,

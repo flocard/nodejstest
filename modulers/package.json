@@ -9,7 +9,7 @@
     "async": "1.4.2",
     "body-parser": "1.13.3",
     "connect-timeout": "1.7.0",
-    "erable-logger-nodejs": "2.0.2",
+    "erable-logger-nodejs": "file:../erable-logger-nodejs-2.0.2.tgz",
     "express": "4.13.3",
     "extend": "3.0.0",
     "is-my-json-valid": "2.10.1",
