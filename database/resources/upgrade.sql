@@ -6,3 +6,5 @@ CREATE TABLE hello (
                 message VARCHAR(100) NOT NULL,
                 PRIMARY KEY (id)
 );
+
+INSERT INTO hello values("idtest", "message de test")
